@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.droidninja.imageeditengine.views.cropimage.CropImageView;
 
 public class CropFragment extends BaseFragment implements View.OnClickListener{
