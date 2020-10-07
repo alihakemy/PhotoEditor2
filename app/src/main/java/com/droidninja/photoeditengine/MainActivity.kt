@@ -25,13 +25,12 @@ class MainActivity : AppCompatActivity() {
     select_image_btn.setOnClickListener {
 //git config user.email ali
       //>git config --global user.name "ali"
+      //git commit --amend --author="Author Name <email@address.com>" --no-edit
       rxPermissions
           .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
               Manifest.permission.READ_EXTERNAL_STORAGE)
           .subscribe { granted ->
             if (granted) { // Always true pre-M
-
-
 
               // I can control the camera now
               FilePickerBuilder.getInstance().setMaxCount(1)

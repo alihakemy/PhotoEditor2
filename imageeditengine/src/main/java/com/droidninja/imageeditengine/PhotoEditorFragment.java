@@ -61,7 +61,6 @@ public class PhotoEditorFragment extends BaseFragment
   private Bitmap mainBitmap;
   private LruCache<Integer, Bitmap> cacheStack;
   private int filterLayoutHeight;
-  private OnFragmentInteractionListener mListener;
   public static final int MODE_NONE = 0;
   public static final int MODE_PAINT = 1;
   public static final int MODE_ADD_TEXT = 2;
@@ -89,28 +88,11 @@ public class PhotoEditorFragment extends BaseFragment
     return inflater.inflate(R.layout.fragment_photo_editor, container, false);
   }
 
-  @Override public void onAttach(Context context) {
-    super.onAttach(context);
-    if (context instanceof OnFragmentInteractionListener) {
-      mListener = (OnFragmentInteractionListener) context;
-    } else {
-      throw new RuntimeException(
-          context.toString() + " must implement OnFragmentInteractionListener");
-    }
-  }
-
-  @Override public void onDetach() {
-    super.onDetach();
-    mListener = null;
-  }
 
 
 
-  public interface OnFragmentInteractionListener {
-    void onCropClicked(Bitmap bitmap);
 
-    void onDoneClicked(String imagePath);
-  }
+
 
   public void setImageBitmap(Bitmap bitmap) {
     mainImageView.setImageBitmap(bitmap);
@@ -290,14 +272,12 @@ public class PhotoEditorFragment extends BaseFragment
         new ApplyFilterTask(new TaskCallback<Bitmap>() {
           @Override public void onTaskDone(Bitmap data) {
             if(data!=null) {
-              mListener.onCropClicked(getBitmapCache(data));
               photoEditorView.hidePaintView();
             }
           }
         }, Bitmap.createBitmap(originalBitmap)).execute(selectedFilter);
       }
       else{
-        mListener.onCropClicked(getBitmapCache(originalBitmap));
         photoEditorView.hidePaintView();
       }
     } else if (id == R.id.stickers_btn) {
@@ -316,7 +296,6 @@ public class PhotoEditorFragment extends BaseFragment
               new ProcessingImage(getBitmapCache(data), Utility.getCacheFilePath(view.getContext()),
                   new TaskCallback<String>() {
                     @Override public void onTaskDone(String data) {
-                      mListener.onDoneClicked(data);
                     }
                   }).execute();
             }
@@ -327,7 +306,6 @@ public class PhotoEditorFragment extends BaseFragment
         new ProcessingImage(getBitmapCache(mainBitmap), Utility.getCacheFilePath(view.getContext()),
             new TaskCallback<String>() {
               @Override public void onTaskDone(String data) {
-                mListener.onDoneClicked(data);
               }
             }).execute();
       }

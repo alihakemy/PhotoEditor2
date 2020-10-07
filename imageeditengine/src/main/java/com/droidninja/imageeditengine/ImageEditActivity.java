@@ -13,7 +13,7 @@ import com.droidninja.imageeditengine.utils.FragmentUtil;
 import static com.droidninja.imageeditengine.ImageEditor.EXTRA_IMAGE_PATH;
 
 public class ImageEditActivity extends BaseImageEditActivity
-    implements PhotoEditorFragment.OnFragmentInteractionListener{
+{
   private Rect cropRect;
 
   //private View touchView;
@@ -29,17 +29,7 @@ public class ImageEditActivity extends BaseImageEditActivity
     }
   }
 
-  @Override public void onCropClicked(Bitmap bitmap) {
 
-  }
-
-  @Override public void onDoneClicked(String imagePath) {
-
-    Intent intent = new Intent();
-    intent.putExtra(ImageEditor.EXTRA_EDITED_PATH, imagePath);
-    setResult(Activity.RESULT_OK, intent);
-    finish();
-  }
 
 
 
