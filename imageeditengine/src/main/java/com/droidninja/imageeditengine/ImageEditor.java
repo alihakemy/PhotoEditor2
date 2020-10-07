@@ -36,7 +36,7 @@ public class ImageEditor {
     private String stickerFolderName;
     private boolean enabledEditorText = true;
     private boolean enabledEditorPaint = true;
-    private boolean enabledEditorSticker = false;
+    private boolean enabledEditorSticker = true;
     private boolean enableEditorCrop = false;
     private boolean enableFilters = true;
 
