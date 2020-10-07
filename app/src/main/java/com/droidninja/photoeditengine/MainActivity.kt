@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
+
               // I can control the camera now
               FilePickerBuilder.getInstance().setMaxCount(1)
                       .setActivityTheme(R.style.LibAppTheme)
